@@ -1,17 +1,16 @@
-// Emulator.h : Emulator ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÁÖ Çì´õ ÆÄÀÏ
+// Emulator.h : Emulator ì‘ìš© í”„ë¡œê·¸ë¨ì— ëŒ€í•œ ì£¼ í—¤ë” íŒŒì¼
 //
 #pragma once
+#import <IOSTREAM>
 
 #ifndef __AFXWIN_H__
 	#error include 'stdafx.h' before including this file for PCH
 #endif
 
-#include "resource.h"       // ÁÖ ±âÈ£
+#include "resource.h"       // ì£¼ ê¸°í˜¸
 
 
-// CEmulatorApp:
-// ÀÌ Å¬·¡½ºÀÇ ±¸Çö¿¡ ´ëÇØ¼­´Â Emulator.cppÀ» ÂüÁ¶ÇÏ½Ê½Ã¿À.
-//
+
 
 class CEmulatorApp : public CWinApp
 {
@@ -28,11 +27,11 @@ public:
 	CEmulatorApp();
 
 
-// ÀçÁ¤ÀÇ
+// ì¬ì •ì˜
 public:
 	virtual BOOL InitInstance();
 
-// ±¸Çö
+// êµ¬í˜„
 	afx_msg void OnAppAbout();
 	DECLARE_MESSAGE_MAP()
 	virtual int Run();
