@@ -1,5 +1,4 @@
-// Emulator.cpp : ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ Å¬·¡½º µ¿ÀÛÀ» Á¤ÀÇÇÕ´Ï´Ù.
-//
+
 
 #include "stdafx.h"
 #include "Emulator.h"
@@ -19,40 +18,37 @@
 
 DO_RTC_CATCH	_do_rtc_catch;
 
-// CEmulatorApp
+
 
 BEGIN_MESSAGE_MAP(CEmulatorApp, CWinApp)
 	ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
-	// Ç¥ÁØ ÆÄÀÏÀ» ±âÃÊ·Î ÇÏ´Â ¹®¼­ ¸í·ÉÀÔ´Ï´Ù.
+
 	ON_COMMAND(ID_FILE_NEW, CWinApp::OnFileNew)
 	ON_COMMAND(ID_FILE_OPEN, CWinApp::OnFileOpen)
-	// Ç¥ÁØ ÀÎ¼â ¼³Á¤ ¸í·ÉÀÔ´Ï´Ù.
+
 	ON_COMMAND(ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
 END_MESSAGE_MAP()
 
 
-// CEmulatorApp »ý¼º
+
 
 CEmulatorApp::CEmulatorApp() 
 	: m_bIsActive(TRUE)
 {
-	// TODO: ¿©±â¿¡ »ý¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// InitInstance¿¡ ¸ðµç Áß¿äÇÑ ÃÊ±âÈ­ ÀÛ¾÷À» ¹èÄ¡ÇÕ´Ï´Ù.
+	
 	BUG_TRAP::BugTrapInstall( std::string(_T("Emulator")));
 	
 	memset(m_szAppPath, 0, sizeof(char) * (MAX_PATH));
 
-	//	Note : ¼ø¼ö °¡»óÇÔ¼ö È£Ãâ °¨Áö ÇÚµé·¯.
-	//
-//	_set_purecall_handler(smtm_PurecallHandler);
+	
 }
 
 
-// À¯ÀÏÇÑ CEmulatorApp °³Ã¼ÀÔ´Ï´Ù.
+// ìœ ì¼í•œ CEmulatorApp ê°œì²´ìž…ë‹ˆë‹¤.
 
 CEmulatorApp theApp;
 
-// CEmulatorApp ÃÊ±âÈ­
+// CEmulatorApp ì´ˆê¸°í™”
 
 BOOL CEmulatorApp::InitInstance()
 {
@@ -73,67 +69,56 @@ BOOL CEmulatorApp::InitInstance()
 
 	strcpy ( m_szAppPath, m_strAppPath.GetString() );
 	
-	// ÀÀ¿ë ÇÁ·Î±×·¥ ¸Å´ÏÆä½ºÆ®°¡ ComCtl32.dll ¹öÀü 6 ÀÌ»óÀ» »ç¿ëÇÏ¿© ºñÁÖ¾ó ½ºÅ¸ÀÏÀ»
-	// »ç¿ëÇÏµµ·Ï ÁöÁ¤ÇÏ´Â °æ¿ì, Windows XP »ó¿¡¼­ ¹Ýµå½Ã InitCommonControls()°¡ ÇÊ¿äÇÕ´Ï´Ù. 
-	// InitCommonControls()¸¦ »ç¿ëÇÏÁö ¾ÊÀ¸¸é Ã¢À» ¸¸µé ¼ö ¾ø½À´Ï´Ù.
+
 	InitCommonControls();
 
 	CWinApp::InitInstance();
 
-	// OLE ¶óÀÌºê·¯¸®¸¦ ÃÊ±âÈ­ÇÕ´Ï´Ù.
+
 	if (!AfxOleInit())
 	{
 		AfxMessageBox(IDP_OLE_INIT_FAILED);
 		return FALSE;
 	}
 	AfxEnableControlContainer();
-	// Ç¥ÁØ ÃÊ±âÈ­
-	// ÀÌµé ±â´ÉÀ» »ç¿ëÇÏÁö ¾Ê°í ÃÖÁ¾ ½ÇÇà ÆÄÀÏÀÇ Å©±â¸¦ ÁÙÀÌ·Á¸é
-	// ¾Æ·¡¿¡¼­ ÇÊ¿ä ¾ø´Â Æ¯Á¤ ÃÊ±âÈ­ ·çÆ¾À» Á¦°ÅÇØ¾ß ÇÕ´Ï´Ù.
-	// ÇØ´ç ¼³Á¤ÀÌ ÀúÀåµÈ ·¹Áö½ºÆ®¸® Å°¸¦ º¯°æÇÏ½Ê½Ã¿À.
-	// TODO: ÀÌ ¹®ÀÚ¿­À» È¸»ç ¶Ç´Â Á¶Á÷ÀÇ ÀÌ¸§°ú °°Àº
-	// ÀûÀýÇÑ ³»¿ëÀ¸·Î ¼öÁ¤ÇØ¾ß ÇÕ´Ï´Ù.
-	SetRegistryKey(_T("·ÎÄÃ ÀÀ¿ë ÇÁ·Î±×·¥ ¸¶¹ý»ç¿¡¼­ »ý¼ºµÈ ÀÀ¿ë ÇÁ·Î±×·¥"));
-	LoadStdProfileSettings(4);  // MRU¸¦ Æ÷ÇÔÇÏ¿© Ç¥ÁØ INI ÆÄÀÏ ¿É¼ÇÀ» ·ÎµåÇÕ´Ï´Ù.
-	// ÀÀ¿ë ÇÁ·Î±×·¥ÀÇ ¹®¼­ ÅÛÇÃ¸´À» µî·ÏÇÕ´Ï´Ù. ¹®¼­ ÅÛÇÃ¸´Àº
-	// ¹®¼­, ÇÁ·¹ÀÓ Ã¢ ¹× ºä »çÀÌÀÇ ¿¬°á ¿ªÇÒÀ» ÇÕ´Ï´Ù.
+	
+	SetRegistryKey(_T("ë¡œì»¬ ì‘ìš© í”„ë¡œê·¸ëž¨ ë§ˆë²•ì‚¬ì—ì„œ ìƒì„±ëœ ì‘ìš© í”„ë¡œê·¸ëž¨"));
+	LoadStdProfileSettings(4);  // MRUë¥¼ í¬í•¨í•˜ì—¬ í‘œì¤€ INI íŒŒì¼ ì˜µì…˜ì„ ë¡œë“œí•©ë‹ˆë‹¤.
+	
 	CSingleDocTemplate* pDocTemplate;
 	pDocTemplate = new CSingleDocTemplate(
 		IDR_MAINFRAME,
 		RUNTIME_CLASS(CEmulatorDoc),
-		RUNTIME_CLASS(CMainFrame),       // ÁÖ SDI ÇÁ·¹ÀÓ Ã¢ÀÔ´Ï´Ù.
+		RUNTIME_CLASS(CMainFrame),     
 		RUNTIME_CLASS(CEmulatorView));
 	AddDocTemplate(pDocTemplate);
-	// Ç¥ÁØ ¼Ð ¸í·É, DDE, ÆÄÀÏ ¿­±â¿¡ ´ëÇÑ ¸í·ÉÁÙÀ» ±¸¹® ºÐ¼®ÇÕ´Ï´Ù.
+
 	CCommandLineInfo cmdInfo;
 	ParseCommandLine(cmdInfo);
-	// ¸í·ÉÁÙ¿¡ ÁöÁ¤µÈ ¸í·ÉÀ» µð½ºÆÐÄ¡ÇÕ´Ï´Ù. ÀÀ¿ë ÇÁ·Î±×·¥ÀÌ /RegServer, /Register, /Unregserver ¶Ç´Â /Unregister·Î ½ÃÀÛµÈ °æ¿ì FALSE¸¦ ¹ÝÈ¯ÇÕ´Ï´Ù.
+
 	if (!ProcessShellCommand(cmdInfo))
 		return FALSE;
-	// Ã¢ ÇÏ³ª¸¸ ÃÊ±âÈ­µÇ¾úÀ¸¹Ç·Î ÀÌ¸¦ Ç¥½ÃÇÏ°í ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù.
+
 	m_pMainWnd->ShowWindow(SW_SHOW);
 	m_pMainWnd->UpdateWindow();
-	// Á¢¹Ì»ç°¡ ÀÖÀ» °æ¿ì¿¡¸¸ DragAcceptFiles¸¦ È£ÃâÇÕ´Ï´Ù.
-	// SDI ÀÀ¿ë ÇÁ·Î±×·¥¿¡¼­´Â ProcessShellCommand ÈÄ¿¡ ÀÌ·¯ÇÑ È£ÃâÀÌ ¹ß»ýÇØ¾ß ÇÕ´Ï´Ù.
+
 	return TRUE;
 }
 
 
-
-// ÀÀ¿ë ÇÁ·Î±×·¥ Á¤º¸¿¡ »ç¿ëµÇ´Â CAboutDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
 
 class CAboutDlg : public CDialog
 {
 public:
 	CAboutDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍ
+// ëŒ€í™” ìƒìž ë°ì´í„°
 	enum { IDD = IDD_ABOUTBOX };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿ø
+	virtual void DoDataExchange(CDataExchange* pDX);    
 
-// ±¸Çö
+// êµ¬í˜„
 protected:
 	DECLARE_MESSAGE_MAP()
 };
@@ -150,7 +135,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 END_MESSAGE_MAP()
 
-// ´ëÈ­ »óÀÚ¸¦ ½ÇÇàÇÏ±â À§ÇÑ ÀÀ¿ë ÇÁ·Î±×·¥ ¸í·ÉÀÔ´Ï´Ù.
+
 void CEmulatorApp::OnAppAbout()
 {
 	CAboutDlg aboutDlg;
@@ -158,12 +143,12 @@ void CEmulatorApp::OnAppAbout()
 }
 
 
-// CEmulatorApp ¸Þ½ÃÁö Ã³¸®±â
+
 
 
 int CEmulatorApp::Run()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+
 	MSG msg;
 
 	while (1)
@@ -185,8 +170,7 @@ int CEmulatorApp::Run()
 		{
 			if ( m_bIsActive == TRUE )
 			{
-				//	Note : D3D APP ¾÷µ¥ÀÌÆ®.
-				//
+				
 				CMainFrame *pFrame = (CMainFrame *) AfxGetApp()->m_pMainWnd;
 				CEmulatorView *pView = (CEmulatorView*) pFrame->GetActiveView();
 
@@ -199,5 +183,5 @@ int CEmulatorApp::Run()
 				WaitMessage();
 		}
 	}
-	//return CWinApp::Run();
+
 }
