@@ -44,11 +44,12 @@ CEmulatorApp::CEmulatorApp()
 }
 
 
-// 유일한 CEmulatorApp 개체입니다.
+
 
 CEmulatorApp theApp;
 
-// CEmulatorApp 초기화
+
+
 
 BOOL CEmulatorApp::InitInstance()
 {
@@ -83,7 +84,7 @@ BOOL CEmulatorApp::InitInstance()
 	AfxEnableControlContainer();
 	
 	SetRegistryKey(_T("로컬 응용 프로그램 마법사에서 생성된 응용 프로그램"));
-	LoadStdProfileSettings(4);  // MRU를 포함하여 표준 INI 파일 옵션을 로드합니다.
+	LoadStdProfileSettings(4);  
 	
 	CSingleDocTemplate* pDocTemplate;
 	pDocTemplate = new CSingleDocTemplate(
