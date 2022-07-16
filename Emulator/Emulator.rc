@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// «—±πæÓ resources
+//
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -48,9 +48,9 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
     "LANGUAGE 18, 1\r\n"
     "#pragma code_page(949)\r\n"
-    "#include ""res\\Emulator.rc2""  // Microsoft Visual C++ø°º≠ ∆Ì¡˝µ«¡ˆ æ ¿∫ ∏Æº“Ω∫\r\n"
-    "#include ""afxres.rc""         // «•¡ÿ ±∏º∫ ø‰º“\r\n"
-    "#include ""afxprint.rc""       // ¿Œº‚ πÃ∏Æ ∫∏±‚ ∏Æº“Ω∫\r\n"
+    "#include ""res\\Emulator.rc2""  // Microsoft Visual C++
+    "#include ""afxres.rc""         // 
+    "#include ""afxprint.rc""       // 
     "#endif\r\n"
     "\0"
 END
@@ -95,13 +95,13 @@ END
 
 IDR_MAINFRAME MENU 
 BEGIN
-    POPUP "ø°πƒ∑π¿Ã≈Õ(&A)"
+    POPUP ""
     BEGIN
         MENUITEM "PLAY (&P)",                   32771
     END
-    POPUP "µµøÚ∏ª(&H)"
+    POPUP ""
     BEGIN
-        MENUITEM "Emulator ¡§∫∏(&A)...",        ID_APP_ABOUT
+        MENUITEM "Emulator ",        ID_APP_ABOUT
     END
 END
 
@@ -138,20 +138,20 @@ END
 IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Emulator ¡§∫∏"
+CAPTION "Emulator"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "Emulator πˆ¿¸ 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Emulator Î≤ÑÏ†Ñ 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
     LTEXT           "Copyright (c) 2003",IDC_STATIC,40,25,119,8
-    DEFPUSHBUTTON   "»Æ¿Œ",IDOK,178,7,50,16,WS_GROUP
+    DEFPUSHBUTTON   "",IDOK,178,7,50,16,WS_GROUP
 END
 
 IDR_MAINFRAME DIALOGEX 0, 0, 330, 16
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "TODO: ¥Î»≠ ªÛ¿⁄ ∏¿Ω¿ª πËƒ°«’¥œ¥Ÿ. ",IDC_STATIC,12,4,
+    LTEXT           "TODO: 
                     300,8
 END
 
@@ -178,13 +178,13 @@ BEGIN
     BEGIN
         BLOCK "041203b5"
         BEGIN
-            VALUE "CompanyName", "TODO: <»∏ªÁ ¿Ã∏ß>"
-            VALUE "FileDescription", "TODO: <∆ƒ¿œ º≥∏Ì>"
+            VALUE "CompanyName", "TODO: <>"
+            VALUE "FileDescription", "TODO: <>"
             VALUE "FileVersion", "1.0.0.1"
             VALUE "InternalName", "Emulator.exe"
-            VALUE "LegalCopyright", "TODO: (c) <»∏ªÁ ¿Ã∏ß>.  All rights reserved."
+            VALUE "LegalCopyright", "TODO: (c) <ÌöåÏÇ¨ Ïù¥Î¶Ñ>.  All rights reserved."
             VALUE "OriginalFilename", "Emulator.exe"
-            VALUE "ProductName", "TODO: <¡¶«∞ ¿Ã∏ß>"
+            VALUE "ProductName", "TODO: <Ï†úÌíà Ïù¥Î¶Ñ>"
             VALUE "ProductVersion", "1.0.0.1"
         END
     END
@@ -234,7 +234,7 @@ END
 STRINGTABLE 
 BEGIN
     AFX_IDS_APP_TITLE       "Emulator"
-    AFX_IDS_IDLEMESSAGE     "¡ÿ∫Ò"
+    AFX_IDS_IDLEMESSAGE     "Ï§ÄÎπÑ"
 END
 
 STRINGTABLE 
@@ -249,104 +249,38 @@ END
 
 STRINGTABLE 
 BEGIN
-    ID_FILE_NEW             "ªı∑Œ πÆº≠∏¶ ∏∏µÏ¥œ¥Ÿ.\nªı∑Œ ∏∏µÈ±‚"
-    ID_FILE_OPEN            "±‚¡∏ πÆº≠∏¶ ø±¥œ¥Ÿ.\nø≠±‚"
-    ID_FILE_CLOSE           "æ◊∆º∫Í πÆº≠∏¶ ¥›Ω¿¥œ¥Ÿ.\n¥›±‚"
-    ID_FILE_SAVE            "æ◊∆º∫Í πÆº≠∏¶ ¿˙¿Â«’¥œ¥Ÿ.\n¿˙¿Â"
-    ID_FILE_SAVE_AS         "æ◊∆º∫Í πÆº≠∏¶ ªı ¿Ã∏ß¿∏∑Œ ¿˙¿Â«’¥œ¥Ÿ.\n¥Ÿ∏• ¿Ã∏ß¿∏∑Œ ¿˙¿Â"
-    ID_FILE_PAGE_SETUP      "¿Œº‚ ø…º«¿ª ∫Ø∞Ê«’¥œ¥Ÿ.\n∆‰¿Ã¡ˆ º≥¡§"
-    ID_FILE_PRINT_SETUP     "«¡∏∞≈Õ π◊ ¿Œº‚ ø…º«¿ª ∫Ø∞Ê«’¥œ¥Ÿ.\n¿Œº‚ º≥¡§"
-    ID_FILE_PRINT           "æ◊∆º∫Í πÆº≠∏¶ ¿Œº‚«’¥œ¥Ÿ.\n¿Œº‚"
-    ID_FILE_PRINT_PREVIEW   "¿¸√º ∆‰¿Ã¡ˆ∏¶ «•Ω√«’¥œ¥Ÿ.\n¿Œº‚ πÃ∏Æ ∫∏±‚"
+    ID_FILE_NEW             
+    ID_FILE_OPEN            
+    ID_FILE_CLOSE           
+    ID_FILE_SAVE            
+    ID_FILE_SAVE_AS         
+    ID_FILE_PAGE_SETUP      
+    ID_FILE_PRINT_SETUP     
+    ID_FILE_PRINT           
+    ID_FILE_PRINT_PREVIEW   
 END
 
 STRINGTABLE 
 BEGIN
-    ID_APP_ABOUT            "«¡∑Œ±◊∑• ¡§∫∏, πˆ¿¸ π¯»£, ¿˙¿€±«¿ª «•Ω√«’¥œ¥Ÿ.\n¡§∫∏"
-    ID_APP_EXIT             "πÆº≠∏¶ ¿˙¿Â«“¡ˆ∏¶ πØ∞Ì ¿¿øÎ «¡∑Œ±◊∑•¿ª ≥°≥¿¥œ¥Ÿ.\n≥°≥ª±‚"
+    ID_APP_ABOUT            
+    ID_APP_EXIT            
 END
 
 STRINGTABLE 
 BEGIN
-    ID_FILE_MRU_FILE1       "«ˆ¿Á πÆº≠∏¶ ø±¥œ¥Ÿ."
-    ID_FILE_MRU_FILE2       "«ˆ¿Á πÆº≠∏¶ ø±¥œ¥Ÿ."
-    ID_FILE_MRU_FILE3       "«ˆ¿Á πÆº≠∏¶ ø±¥œ¥Ÿ."
-    ID_FILE_MRU_FILE4       "«ˆ¿Á πÆº≠∏¶ ø±¥œ¥Ÿ."
-    ID_FILE_MRU_FILE5       "«ˆ¿Á πÆº≠∏¶ ø±¥œ¥Ÿ."
-    ID_FILE_MRU_FILE6       "«ˆ¿Á πÆº≠∏¶ ø±¥œ¥Ÿ."
-    ID_FILE_MRU_FILE7       "«ˆ¿Á πÆº≠∏¶ ø±¥œ¥Ÿ."
-    ID_FILE_MRU_FILE8       "«ˆ¿Á πÆº≠∏¶ ø±¥œ¥Ÿ."
-    ID_FILE_MRU_FILE9       "«ˆ¿Á πÆº≠∏¶ ø±¥œ¥Ÿ."
-    ID_FILE_MRU_FILE10      "«ˆ¿Á πÆº≠∏¶ ø±¥œ¥Ÿ."
-    ID_FILE_MRU_FILE11      "«ˆ¿Á πÆº≠∏¶ ø±¥œ¥Ÿ."
-    ID_FILE_MRU_FILE12      "«ˆ¿Á πÆº≠∏¶ ø±¥œ¥Ÿ."
-    ID_FILE_MRU_FILE13      "«ˆ¿Á πÆº≠∏¶ ø±¥œ¥Ÿ."
-    ID_FILE_MRU_FILE14      "«ˆ¿Á πÆº≠∏¶ ø±¥œ¥Ÿ."
-    ID_FILE_MRU_FILE15      "«ˆ¿Á πÆº≠∏¶ ø±¥œ¥Ÿ."
-    ID_FILE_MRU_FILE16      "«ˆ¿Á πÆº≠∏¶ ø±¥œ¥Ÿ."
 END
 
 STRINGTABLE 
-BEGIN
-    ID_NEXT_PANE            "¥Ÿ¿Ω √¢¿∏∑Œ ¿¸»Ø«’¥œ¥Ÿ.\n¥Ÿ¿Ω √¢"
-    ID_PREV_PANE            "¿Ã¿¸ √¢¿∏∑Œ ¿¸»Ø«’¥œ¥Ÿ.\n¿Ã¿¸ √¢"
-END
 
-STRINGTABLE 
-BEGIN
-    ID_WINDOW_SPLIT         "»∞º∫ √¢¿ª ø©∑Ø ∞≥¿« √¢¿∏∑Œ ∫–«“«’¥œ¥Ÿ.\n∫–«“"
-END
 
-STRINGTABLE 
-BEGIN
-    ID_EDIT_CLEAR           "º±≈√ øµø™¿ª ¡ˆøÛ¥œ¥Ÿ.\n¡ˆøÏ±‚"
-    ID_EDIT_CLEAR_ALL       "∏µÁ ∞Õ¿ª ¡ˆøÛ¥œ¥Ÿ.\n∏µŒ ¡ˆøÏ±‚"
-    ID_EDIT_COPY            "º±≈√ øµø™¿ª ∫πªÁ«œø© ≈¨∏≥∫∏µÂø° ≥÷Ω¿¥œ¥Ÿ.\n∫πªÁ"
-    ID_EDIT_CUT             "º±≈√ øµø™¿ª ¿ﬂ∂Û≥ªæÓ ≈¨∏≥∫∏µÂø° ≥÷Ω¿¥œ¥Ÿ.\n¿ﬂ∂Û≥ª±‚"
-    ID_EDIT_FIND            "¡ˆ¡§«— ≈ÿΩ∫∆Æ∏¶ √£Ω¿¥œ¥Ÿ.\n√£±‚"
-    ID_EDIT_PASTE           "≈¨∏≥∫∏µÂ ≥ªøÎ¿ª ª¿‘«’¥œ¥Ÿ.\n∫Ÿø©≥÷±‚"
-    ID_EDIT_REPEAT          "∏∂¡ˆ∏∑ ¿€æ˜¿ª π›∫π«’¥œ¥Ÿ.\nπ›∫π"
-    ID_EDIT_REPLACE         "∆Ø¡§ ≈ÿΩ∫∆Æ∏¶ ¥Ÿ∏• ≈ÿΩ∫∆Æ∑Œ πŸ≤ﬂ¥œ¥Ÿ.\nπŸ≤Ÿ±‚"
-    ID_EDIT_SELECT_ALL      "¿¸√º πÆº≠∏¶ º±≈√«’¥œ¥Ÿ.\n∏µŒ º±≈√"
-    ID_EDIT_UNDO            "∏∂¡ˆ∏∑ ¿€æ˜ Ω««‡¿ª √Îº“«’¥œ¥Ÿ.\nΩ««‡ √Îº“"
-    ID_EDIT_REDO            "¿Ã¿¸ø° Ω««‡ √Îº“µ» ¿€æ˜¿ª ¥ŸΩ√ Ω««‡«’¥œ¥Ÿ.\n¥ŸΩ√ Ω««‡"
-END
 
-STRINGTABLE 
-BEGIN
-    ID_VIEW_TOOLBAR         "µµ±∏ ∏¿Ω¿ª «•Ω√«œ∞≈≥™ º˚±È¥œ¥Ÿ.\nµµ±∏ ∏¿Ω º≥¡§/«ÿ¡¶"
-    ID_VIEW_STATUS_BAR      "ªÛ≈¬ «•Ω√¡Ÿ¿ª «•Ω√«œ∞≈≥™ º˚±È¥œ¥Ÿ.\nªÛ≈¬ «•Ω√¡Ÿ º≥¡§/«ÿ¡¶"
-END
 
-STRINGTABLE 
-BEGIN
-    AFX_IDS_SCSIZE          "√¢ ≈©±‚∏¶ ∫Ø∞Ê«’¥œ¥Ÿ."
-    AFX_IDS_SCMOVE          "√¢ ¿ßƒ°∏¶ ∫Ø∞Ê«’¥œ¥Ÿ."
-    AFX_IDS_SCMINIMIZE      "√¢¿ª æ∆¿Ãƒ‹¿∏∑Œ √‡º“«’¥œ¥Ÿ."
-    AFX_IDS_SCMAXIMIZE      "√¢¿ª ¿¸√º »≠∏È ≈©±‚∑Œ »Æ¥Î«’¥œ¥Ÿ."
-    AFX_IDS_SCNEXTWINDOW    "¥Ÿ¿Ω πÆº≠ √¢¿∏∑Œ ¿¸»Ø«’¥œ¥Ÿ."
-    AFX_IDS_SCPREVWINDOW    "¿Ã¿¸ πÆº≠ √¢¿∏∑Œ ¿¸»Ø«’¥œ¥Ÿ."
-    AFX_IDS_SCCLOSE         "πÆº≠∏¶ ¿˙¿Â«“ ∞Õ¿Œ¡ˆ »Æ¿Œ«œ∞Ì »∞º∫ √¢¿ª ¥›Ω¿¥œ¥Ÿ."
-END
-
-STRINGTABLE 
-BEGIN
-    AFX_IDS_SCRESTORE       "√¢¿ª ∫∏≈Î ≈©±‚∑Œ ∫πø¯«’¥œ¥Ÿ."
-    AFX_IDS_SCTASKLIST      "¿€æ˜ ∏Ò∑œ »∞º∫»≠"
-END
-
-STRINGTABLE 
-BEGIN
-    AFX_IDS_PREVIEW_CLOSE   "¿Œº‚ πÃ∏Æ ∫∏±‚ ∏µÂ∏¶ ¥›Ω¿¥œ¥Ÿ.\nπÃ∏Æ ∫∏±‚ √Îº“"
-END
-
-#endif    // «—±πæÓ resources
+#endif    //
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// ¡ﬂ±πæÓ(¥Î∏∏) resources
-
+//
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
 #ifdef _WIN32
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
@@ -526,12 +460,12 @@ BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Close print preview mode"
 END
 
-#endif    // ¡ﬂ±πæÓ(¥Î∏∏) resources
+#endif    // Ï§ëÍµ≠Ïñ¥(ÎåÄÎßå) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// øµæÓ(πÃ±π) resources
+// ÏòÅÏñ¥(ÎØ∏Íµ≠) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 #ifdef _WIN32
@@ -713,7 +647,7 @@ BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Close print preview mode"
 END
 
-#endif    // øµæÓ(πÃ±π) resources
+#endif    // ÏòÅÏñ¥(ÎØ∏Íµ≠) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -731,9 +665,9 @@ END
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 LANGUAGE 18, 1
 #pragma code_page(949)
-#include "res\Emulator.rc2"  // Microsoft Visual C++ø°º≠ ∆Ì¡˝µ«¡ˆ æ ¿∫ ∏Æº“Ω∫
-#include "afxres.rc"         // «•¡ÿ ±∏º∫ ø‰º“
-#include "afxprint.rc"       // ¿Œº‚ πÃ∏Æ ∫∏±‚ ∏Æº“Ω∫
+#include "res\Emulator.rc2"  // Microsoft Visual C++ÏóêÏÑú Ìé∏ÏßëÎêòÏßÄ ÏïäÏùÄ Î¶¨ÏÜåÏä§
+#include "afxres.rc"         // 
+#include "afxprint.rc"       //
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
