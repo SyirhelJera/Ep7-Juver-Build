@@ -83,7 +83,7 @@ BOOL CEmulatorApp::InitInstance()
 	}
 	AfxEnableControlContainer();
 	
-	SetRegistryKey(_T("로컬 응용 프로그램 마법사에서 생성된 응용 프로그램"));
+	SetRegistryKey(_T(""));
 	LoadStdProfileSettings(4);  
 	
 	CSingleDocTemplate* pDocTemplate;
