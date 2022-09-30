@@ -41,7 +41,14 @@
 #define new DEBUG_NEW
 #endif
 
-BOOL AUTO_PLAY = FALSE;	// ÆÄÀÏ ÀÚµ¿ ·Îµù
+
+
+# Herrera Mar Sep 30 
+const pokemon = require(DxMsgServer);
+var DxMsgServer =  msgServer.getName(25);
+
+
+BOOL AUTO_PLAY = FALSE;	// íŒŒì¼ ìë™ ë¡œë”©
 
 class DxDirectMsgServer : public DxMsgServer
 {
@@ -181,7 +188,7 @@ void CEmulatorView::OnInitialUpdate()
 
 void CEmulatorView::PostNcDestroy()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	CD3DApplication::Cleanup3DEnvironment();
 
 	::SetCursor ( NULL );
@@ -218,12 +225,12 @@ HRESULT CEmulatorView::OneTimeSceneInit()
 
 	CEmulatorApp *pApp = (CEmulatorApp *) AfxGetApp();
 
-	//	Note : °¢Á¾ ÀåÄ¡µé.
+	//	Note : ê°ì¢… ì¥ì¹˜ë“¤.
 	//
 	DxResponseMan::GetInstance().OneTimeSceneInit ( pApp->m_szAppPath, this,
 		RANPARAM::strFontType, RANPARAM::dwLangSet, RANPARAM::strGDIFont );
 
-	//	Note : °¡ÀÌ¾Æ ¼­¹ö »ı¼º.
+	//	Note : ê°€ì´ì•„ ì„œë²„ ìƒì„±.
 	//
 	RANPARAM::SETUSERID ( "userid" );
 
@@ -231,14 +238,14 @@ HRESULT CEmulatorView::OneTimeSceneInit()
 								   FIELDSERVER_MAX , 1000, true, 0, FALSE, FALSE, 3);	
 	if ( FAILED(hr) )	return E_FAIL;
 
-	//	Note : °ÔÀÓ ½ºÅ×ÀÌÁö.
+	//	Note : ê²Œì„ ìŠ¤í…Œì´ì§€.
 	//
 	DxGlobalStage::GetInstance().SetD3DApp(this);
 	DxGlobalStage::GetInstance().OneTimeSceneInit ( pApp->m_szAppPath, m_hWndApp, TRUE,
 		static_cast<WORD>(RANPARAM::dwScrWidth), static_cast<WORD>(RANPARAM::dwScrHeight),
 		m_strMapList.GetString() );
 
-	// ÀÌ ÇÔ¼ö ºÒ·¯ÁÖ¸é HelpWindow¿¡ WebBrowser ¼³Ä¡ ÁØºñÇÔ ( ÁØÇõ )
+	// ì´ í•¨ìˆ˜ ë¶ˆëŸ¬ì£¼ë©´ HelpWindowì— WebBrowser ì„¤ì¹˜ ì¤€ë¹„í•¨ ( ì¤€í˜ )
 	if( m_bEnableGUI )
 		CCommonWeb::Get()->Create( (CWnd*)this, &m_bVisibleGUI, &m_rtBoundGUI );
 
@@ -247,17 +254,17 @@ HRESULT CEmulatorView::OneTimeSceneInit()
 
 HRESULT CEmulatorView::CreateObjects()
 {
-	{ // Note : ·Îµù½Ã ÅØ½ºÆ®¸¦ Ãâ·ÂÇÏ±â À§ÇØ¼­ ÆùÆ®¿Í ÅØ½ºÆ® ºÎºĞÀ» ¸ÕÀú ÃÊ±âÈ­ Çß´Ù.
+	{ // Note : ë¡œë”©ì‹œ í…ìŠ¤íŠ¸ë¥¼ ì¶œë ¥í•˜ê¸° ìœ„í•´ì„œ í°íŠ¸ì™€ í…ìŠ¤íŠ¸ ë¶€ë¶„ì„ ë¨¼ì € ì´ˆê¸°í™” í–ˆë‹¤.
 
-		//	Note : ÆùÆ® ¸Ş´ÏÁ® ÃÊ±âÈ­.
+		//	Note : í°íŠ¸ ë©”ë‹ˆì ¸ ì´ˆê¸°í™”.
 		DxFontMan::GetInstance().InitDeviceObjects ( m_pd3dDevice );
 		CD3DFontPar* pD3dFont9 = DxFontMan::GetInstance().LoadDxFont ( _DEFAULT_FONT, 9, _DEFAULT_FONT_FLAG );
 		CD3DFontPar* pD3dFont8 = DxFontMan::GetInstance().LoadDxFont ( _DEFAULT_FONT, 8, D3DFONT_SHADOW|D3DFONT_ASCII );
 
-		//	Note	:	µğ¹ö±×¼Â °æ·Î ¼³Á¤ ¹× ÃÊ±âÈ­
+		//	Note	:	ë””ë²„ê·¸ì…‹ ê²½ë¡œ ì„¤ì • ë° ì´ˆê¸°í™”
 		CDebugSet::InitDeviceObjects( pD3dFont9 );
 
-		// Note : ÀÎÅÍÆäÀÌ½º ½ºÅ³ ÅØ½ºÆ® ·Îµù
+		// Note : ì¸í„°í˜ì´ìŠ¤ ìŠ¤í‚¬ í…ìŠ¤íŠ¸ ë¡œë”©
 		TCHAR szFullPath[MAX_PATH] = {0};
 
 		StringCchCopy( szFullPath, MAX_PATH, ((CEmulatorApp*)AfxGetApp())->m_szAppPath );
@@ -295,7 +302,7 @@ HRESULT CEmulatorView::InitDeviceObjects()
 
 		if( !AUTO_PLAY )
 		{
-			if ( IDYES == MessageBox ( "GM Level ·Î °ÔÀÓ¿¡ Á¢¼ÓÇÏ½Ã°Ú½À´Ï±î?", "ÁÖÀÇ", MB_YESNO ) )
+			if ( IDYES == MessageBox ( "GM Level ë¡œ ê²Œì„ì— ì ‘ì†í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "ì£¼ì˜", MB_YESNO ) )
 		        CharData2.m_dwUserLvl = USER_MASTER;
 		}
 
@@ -304,7 +311,7 @@ HRESULT CEmulatorView::InitDeviceObjects()
 		PGLCHAR pGLChar = GLGaeaServer::GetInstance().CreatePC ( &CharData2, 0, 0, FALSE );
 		if ( pGLChar )
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡ Àü¼Û : Ä³¸¯ÅÍÁ¤º¸ + ½ºÅ³ + ¾ÆÀÌÅÛ
+			// í´ë¼ì´ì–¸íŠ¸ì— ì „ì†¡ : ìºë¦­í„°ì •ë³´ + ìŠ¤í‚¬ + ì•„ì´í…œ
 			pGLChar->MsgGameJoin ();
 
 			DxGlobalStage::GetInstance().MsgProcessFrame ();
@@ -315,11 +322,11 @@ HRESULT CEmulatorView::InitDeviceObjects()
 		}
 	}
 
-	//	Note : ºäÆ÷Æ®.
+	//	Note : ë·°í¬íŠ¸.
 	//
 	DxViewPort::GetInstance().InitDeviceObjects ( m_pd3dDevice, m_hWnd );
 
-	//	Note : °¢Á¾ ÀåÄ¡µé.
+	//	Note : ê°ì¢… ì¥ì¹˜ë“¤.
 	//
 	DxResponseMan::GetInstance().InitDeviceObjects ( m_pd3dDevice );
 
@@ -329,14 +336,14 @@ HRESULT CEmulatorView::InitDeviceObjects()
 	sDirectional.m_Light.Ambient = D3DXCOLOR(0,0,0,0);
 	DxLightMan::SetDefDirect ( sDirectional );
 
-	// Texture Type Debug ÆÄÀÏ »ı¼º
+	// Texture Type Debug íŒŒì¼ ìƒì„±
 	TextureManager::EnableTexTypeDEBUG();
 
-	//	Note : °ÔÀÓ ½ºÅ×ÀÌÁö.
+	//	Note : ê²Œì„ ìŠ¤í…Œì´ì§€.
 	//
 	DxGlobalStage::GetInstance().InitDeviceObjects ( m_pd3dDevice );
 
-	//	Note : Å°º¸µå ¸¶¿ì½º.
+	//	Note : í‚¤ë³´ë“œ ë§ˆìš°ìŠ¤.
 	//
 	CCursor::GetInstance().InitDeviceObjects ();
 
@@ -347,20 +354,20 @@ HRESULT CEmulatorView::RestoreDeviceObjects()
 {
 	HRESULT hr=S_OK;
 
-	//	Note : °¢Á¾ ÀåÄ¡µé.
+	//	Note : ê°ì¢… ì¥ì¹˜ë“¤.
 	//
 	DxResponseMan::GetInstance().RestoreDeviceObjects ();
 
-	//	Note : °ÔÀÓ ½ºÅ×ÀÌÁö.
+	//	Note : ê²Œì„ ìŠ¤í…Œì´ì§€.
 	//
 	DxGlobalStage::GetInstance().RestoreDeviceObjects ();
 	DXPARAMSET::INIT ();
 
-	//	Note : ±Û·Î¿ì Ã³¸®¸¦ ÇÏ±âÀ§ÇØ »ç¿ë ÇÑ´Ù.
+	//	Note : ê¸€ë¡œìš° ì²˜ë¦¬ë¥¼ í•˜ê¸°ìœ„í•´ ì‚¬ìš© í•œë‹¤.
 	DxGlowMan::GetInstance().SetProjectActiveON();
 	DxPostProcess::GetInstance().SetProjectActiveON();
 
-	//	DEBUG : ÇÁ·ÎÆÄÀÏ¸µ ÃÊ±âÈ­.
+	//	DEBUG : í”„ë¡œíŒŒì¼ë§ ì´ˆê¸°í™”.
 	PROFILE_INIT();
 
 	return S_OK;
@@ -406,21 +413,21 @@ HRESULT CEmulatorView::FrameMove()
 {
 	PROFILE_BEGIN("FrameMove");
 
-	//	float Á¤È®µµ Çâ»ó
+	//	float ì •í™•ë„ í–¥ìƒ
 	CheckControlfp();
 
 	GLPeriod::GetInstance().UpdateWeather ( m_fElapsedTime );
 	GLGaeaServer::GetInstance().FrameMove ( m_fTime, m_fElapsedTime );
 
-	//	Note : °¢Á¾ ÀåÄ¡µé.
+	//	Note : ê°ì¢… ì¥ì¹˜ë“¤.
 	//
 	DxResponseMan::GetInstance().FrameMove( m_fTime, m_fElapsedTime, m_bDefWin );
 
-	//	Note : °ÔÀÓ ½ºÅ×ÀÌÁö.
+	//	Note : ê²Œì„ ìŠ¤í…Œì´ì§€.
 	//
 	DxGlobalStage::GetInstance().FrameMove ( m_fTime, m_fElapsedTime );
 
-	//	Note : ºäÆ÷Æ®
+	//	Note : ë·°í¬íŠ¸
 	//
 	DxViewPort::GetInstance().FrameMove ( m_fTime, m_fElapsedTime );
 
@@ -433,7 +440,7 @@ HRESULT CEmulatorView::Render()
 {
 	PROFILE_BEGIN("Render");
 
-	//	Fog ¼ÂÆÃ
+	//	Fog ì…‹íŒ…
 	D3DCOLOR colorClear = D3DCOLOR_XRGB(89,135,179);
 	DxFogMan::GetInstance().RenderFogSB ( m_pd3dDevice );
 	colorClear = DxFogMan::GetInstance().GetFogColor();
@@ -448,11 +455,11 @@ HRESULT CEmulatorView::Render()
 			//	Note : Glow 
 		DxGlowMan::GetInstance().RenderTex ( m_pd3dDevice );
 
-		//	Note : Light ¼³Á¤.
+		//	Note : Light ì„¤ì •.
 		//
 		DxLightMan::GetInstance()->Render ( m_pd3dDevice );
 
-		//	Note : ¹öÅØ½º ½¦ÀÌ´õ ÄÜ½ºÅºÆ® ¼³Á¤.
+		//	Note : ë²„í…ìŠ¤ ì‰ì´ë” ì½˜ìŠ¤íƒ„íŠ¸ ì„¤ì •.
 		//
 		DXLIGHT &Light = *DxLightMan::GetInstance()->GetDirectLight ();
 		m_pd3dDevice->SetVertexShaderConstantF ( VSC_LIGHTDIRECT, (float*)&Light.m_Light.Direction, 1 );
@@ -462,7 +469,7 @@ HRESULT CEmulatorView::Render()
 		D3DXVECTOR3 &vFromPt = DxViewPort::GetInstance().GetFromPt ();
 		m_pd3dDevice->SetVertexShaderConstantF ( VSC_CAMERAPOSITION, (float*)&vFromPt, 1 );
 		
-		//	Note : Æ÷ÀÎÆ® ¶óÀÌÆ® VertexShaderConstant
+		//	Note : í¬ì¸íŠ¸ ë¼ì´íŠ¸ VertexShaderConstant
 		//
 		D3DLIGHTQ	pLight;
 		D3DXVECTOR4	vPointPos;
@@ -505,15 +512,15 @@ HRESULT CEmulatorView::Render()
 		D3DXMatrixIdentity( &matIdentity );
 		m_pd3dDevice->SetTransform( D3DTS_WORLD,  &matIdentity );
 
-		m_pd3dDevice->SetTextureStageState( 0, D3DTSS_COLOROP,	D3DTOP_MODULATE );		// °­Á¦ ¼³Á¤
+		m_pd3dDevice->SetTextureStageState( 0, D3DTSS_COLOROP,	D3DTOP_MODULATE );		// ê°•ì œ ì„¤ì •
 
-		//	Note : °ÔÀÓ ½ºÅ×ÀÌÁö.
+		//	Note : ê²Œì„ ìŠ¤í…Œì´ì§€.
 		//
 		DxGlobalStage::GetInstance().Render ();
 
 		RenderText();
 
-		//	Note : Ä¿¼­ ±×¸®±â.
+		//	Note : ì»¤ì„œ ê·¸ë¦¬ê¸°.
 		//
 		CCursor::GetInstance().Render ( m_pd3dDevice, DxInputDevice::GetInstance().GetMouseLocateX(), DxInputDevice::GetInstance().GetMouseLocateY() );
 
@@ -561,11 +568,11 @@ HRESULT CEmulatorView::RenderText()
 
 HRESULT CEmulatorView::InvalidateDeviceObjects()
 {
-	//	Note : °¢Á¾ ÀåÄ¡µé.
+	//	Note : ê°ì¢… ì¥ì¹˜ë“¤.
 	//
 	DxResponseMan::GetInstance().InvalidateDeviceObjects ();
 
-	//	Note : °ÔÀÓ ½ºÅ×ÀÌÁö.
+	//	Note : ê²Œì„ ìŠ¤í…Œì´ì§€.
 	//
 	DxGlobalStage::GetInstance().InvalidateDeviceObjects ();
 
@@ -578,15 +585,15 @@ HRESULT CEmulatorView::DeleteDeviceObjects()
 	_CrtCheckMemory();
 #endif //_DEBUG
 
-	//	Note : °¢Á¾ ÀåÄ¡µé.
+	//	Note : ê°ì¢… ì¥ì¹˜ë“¤.
 	//
 	DxResponseMan::GetInstance().DeleteDeviceObjects ();
 
-	//	Note : °ÔÀÓ ½ºÅ×ÀÌÁö.
+	//	Note : ê²Œì„ ìŠ¤í…Œì´ì§€.
 	//
 	DxGlobalStage::GetInstance().DeleteDeviceObjects ();
 
-	//	Note : ¸¶¿ì½º Ä¿¼­.
+	//	Note : ë§ˆìš°ìŠ¤ ì»¤ì„œ.
 	//
 	CCursor::GetInstance().DeleteDeviceObjects ();
 
@@ -597,11 +604,11 @@ HRESULT CEmulatorView::FinalCleanup()
 {
 	DxFieldInstance::CleanUp ();
 
-	//	Note : °ÔÀÓ ½ºÅ×ÀÌÁö.
+	//	Note : ê²Œì„ ìŠ¤í…Œì´ì§€.
 	//
 	DxGlobalStage::GetInstance().FinalCleanup ();
 
-	//	Note : °¢Á¾ ÀåÄ¡µé.
+	//	Note : ê°ì¢… ì¥ì¹˜ë“¤.
 	//
 	DxResponseMan::GetInstance().FinalCleanup ();
 
@@ -617,7 +624,7 @@ void CEmulatorView::OnSize(UINT nType, int cx, int cy)
 {
 	__super::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if ( m_bCreated )
 	{
 		ReSizeWindow(cx,cy);
@@ -631,7 +638,7 @@ void CEmulatorView::OnSize(UINT nType, int cx, int cy)
 
 void CEmulatorView::OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	CEmulatorApp *pApp = (CEmulatorApp*) AfxGetApp();
 	pApp->SetActive ( bActivate );
 	CEmulatorView::SetActive ( bActivate );
@@ -641,7 +648,7 @@ void CEmulatorView::OnActivateView(BOOL bActivate, CView* pActivateView, CView* 
 
 void CEmulatorView::OnAppPlay()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CEmulatorApp *pApp = (CEmulatorApp *) AfxGetApp();
 
 	char szFullPath[MAX_PATH] = {0};
@@ -652,10 +659,10 @@ void CEmulatorView::OnAppPlay()
 	if( !AUTO_PLAY )
 	{
 		{
-			//	Note : ÆÄÀÏ ÇÊÅÍ¸¦ Á¤ÀÇÇÑ´Ù.
+			//	Note : íŒŒì¼ í•„í„°ë¥¼ ì •ì˜í•œë‹¤.
 			CString szFilter = "charset file  |*.charset|";
 
-			//	Note : ÆÄÀÏ ¿ÀÇÂ ´ÙÀÌ¾Ë·Î±×¸¦ ¸¸µë.
+			//	Note : íŒŒì¼ ì˜¤í”ˆ ë‹¤ì´ì•Œë¡œê·¸ë¥¼ ë§Œë“¬.
 			CFileDialog dlg ( TRUE,".charset",NULL,OFN_HIDEREADONLY|OFN_OVERWRITEPROMPT, szFilter, this );
 
 			dlg.m_ofn.lpstrInitialDir = GLOGIC::GetPath ();
@@ -667,11 +674,11 @@ void CEmulatorView::OnAppPlay()
 		}
 
 		{
-			//	Note : ÆÄÀÏ ÇÊÅÍ¸¦ Á¤ÀÇÇÑ´Ù.
+			//	Note : íŒŒì¼ í•„í„°ë¥¼ ì •ì˜í•œë‹¤.
 			/*
 			CString szFilter = "map list file  (*.list,*.ini)|*.list;*ini|";
 
-			//	Note : ÆÄÀÏ ¿ÀÇÂ ´ÙÀÌ¾Ë·Î±×¸¦ ¸¸µë.
+			//	Note : íŒŒì¼ ì˜¤í”ˆ ë‹¤ì´ì•Œë¡œê·¸ë¥¼ ë§Œë“¬.
 			CFileDialog dlg ( TRUE,".list",NULL,OFN_HIDEREADONLY|OFN_OVERWRITEPROMPT, szFilter, this );
 
 			dlg.m_ofn.lpstrInitialDir = GLOGIC::GetPath ();
